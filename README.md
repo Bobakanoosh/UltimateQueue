@@ -1,4 +1,4 @@
-# Features
+# [#](#Features) Features
 Adds a plethora of additional features to server queue for players with permission. This plugin aims to move the various queue plugins all into one singular queue plugin, and allow easy configuration of which players have access to each feature. These features include:
 * Queue Capacity
 * New players skip queue
@@ -7,10 +7,10 @@ Adds a plethora of additional features to server queue for players with permissi
 * Players with certain auth level skip queue no matter what
 
 
-# Permissions
+# [#](#Permissions) Permissions
 All permissions are customizable in the config files. You may use the default plugin permissions, or use permissions provided by other plugins.
 
-# Configuration
+# [#](#Configuration) Configuration
 ```md
 {
   "Auth Level required to skip queue no matter what (3 = none, 2 = admin, 1 = moderator)": 3,
@@ -35,7 +35,7 @@ All permissions are customizable in the config files. You may use the default pl
 }
 ```
 
-# Localization
+# [#](#Localization) Localization
 ```
 {
   "CapacityReached": "The server's queue is full.",
