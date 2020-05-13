@@ -1,9 +1,11 @@
-﻿using ConVar;
+using ConVar;
+using Facepunch.Extend;
 using Network;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 namespace Oxide.Plugins
@@ -12,7 +14,6 @@ namespace Oxide.Plugins
     [Description("Adds a plethora of additional features to server queue for players with permission.")]
     class UltimateQueue : RustPlugin
     {
-
         private PluginConfig config;
 
         private const string FIRST_CONNECT = "ultimatequeue.firstconnect";
@@ -33,8 +34,6 @@ namespace Oxide.Plugins
         {
             RegisterPermissions();
         }
-
-        #region Hooks
 
         private object CanBypassQueue(Connection connection)
         {
@@ -122,7 +121,6 @@ namespace Oxide.Plugins
             }
         }
 
-        #endregion
 
         #region Helpers
 
@@ -270,8 +268,6 @@ namespace Oxide.Plugins
 
         #endregion
 
-        #region Classes
-
         public static class Epoch
         {
             public static int Current()
@@ -297,8 +293,6 @@ namespace Oxide.Plugins
             }
 
         }
-
-        #endregion
 
     }
 
