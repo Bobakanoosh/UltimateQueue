@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Oxide.Plugins
 {
-    [Info("Ultimate Queue", "Bobakanoosh", "1.0.0")]
+    [Info("Ultimate Queue", "Bobakanoosh", "1.0.1")]
     [Description("Adds a plethora of additional features to server queue for players with permission.")]
     class UltimateQueue : RustPlugin
     {
