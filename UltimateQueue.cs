@@ -8,25 +8,20 @@ using UnityEngine;
 
 namespace Oxide.Plugins
 {
-    [Info("Ultimate Queue", "Bobakanoosh", "1.0.2")]
+    [Info("Ultimate Queue", "Bobakanoosh", "1.0.3")]
     [Description("Adds a plethora of additional features to server queue for players with permission.")]
     class UltimateQueue : RustPlugin
     {
-
         private PluginConfig config;
 
         private const string FIRST_CONNECT = "ultimatequeue.firstconnect";
-        private Dictionary<ulong, int> userDisconnectionTimes; 
+        private Dictionary<ulong, int> userDisconnectionTimes = new Dictionary<ulong, int>(); 
 
         private void Init()
         {
             LoadConfig();
-            if (config.enableHoldQueue)
-            {
-                userDisconnectionTimes = new Dictionary<ulong, int>();
-            }
 
-            timer.Every(60f, () => CheckDisconnections());
+            timer.Every(5f, () => CheckDisconnections());
         }
 
         private void Loaded()
@@ -95,7 +90,7 @@ namespace Oxide.Plugins
             {
                 if (UserHasAnyPermission(player.UserIDString, config.permsGrantingHoldQueue))
                 {
-                    userDisconnectionTimes.Add(player.userID, Epoch.Current());
+                    userDisconnectionTimes[player.userID] = Epoch.Current();
                 }
             }
         }
@@ -132,6 +127,7 @@ namespace Oxide.Plugins
 
             config.permsAffectedByQueueCapacity.ForEach(perm => TryRegister(perm));
             config.permsGrantingHoldQueue.ForEach(perm => TryRegister(perm));
+            config.permsGrantingSkipQueue.ForEach(perm => TryRegister(perm));
         }
 
         private void TryRegister(string perm)
@@ -157,6 +153,7 @@ namespace Oxide.Plugins
 
         private void CheckDisconnections()
         {
+            Puts("CheckingDisconnections");
             int current = Epoch.Current();
             int holdTimeSeconds = config.holdTime * 60;
 
