@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Oxide.Plugins
 {
-    [Info("Ultimate Queue", "Bobakanoosh", "1.0.3")]
+    [Info("Ultimate Queue", "Bobakanoosh", "1.0.4")]
     [Description("Adds a plethora of additional features to server queue for players with permission.")]
     class UltimateQueue : RustPlugin
     {
@@ -21,7 +21,7 @@ namespace Oxide.Plugins
         {
             LoadConfig();
 
-            timer.Every(5f, () => CheckDisconnections());
+            timer.Every(60f, () => CheckDisconnections());
         }
 
         private void Loaded()
@@ -153,7 +153,6 @@ namespace Oxide.Plugins
 
         private void CheckDisconnections()
         {
-            Puts("CheckingDisconnections");
             int current = Epoch.Current();
             int holdTimeSeconds = config.holdTime * 60;
 
